@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --background: 180 14% 96%;
+  --foreground: 210 53% 15%;
+  --primary: 196 51% 25%;
+  --border: 187 19% 91%;
+  --ring: 196 51% 25%;
+  --muted-foreground: 205 15% 42%;
+}
+
+.globe-dark {
+  --background: 210 53% 15%;
+  --foreground: 180 14% 96%;
+  --primary: 162 23% 64%;
+  --border: 210 30% 25%;
+  --ring: 162 23% 64%;
+  --muted-foreground: 187 19% 80%;
+}
+
+html { scroll-behavior: smooth; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.draw { stroke-dasharray: 140; stroke-dashoffset: 140; animation: draw 1.4s ease forwards; }
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { animation: marquee 34s linear infinite; }
+
+@keyframes breathe {
+  0%, 100% { transform: scale(0.7); }
+  50% { transform: scale(1.05); }
+}
+.breathe { animation: breathe 8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .breathe { animation: none; transform: scale(0.9); }
+}
+
+@keyframes pulseRing { 0% { transform: scale(.7); opacity: .5; } 100% { transform: scale(1.7); opacity: 0; } }
+.pulse-ring { animation: pulseRing 3.6s ease-out infinite; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fade-in { animation: fadeIn .45s ease; }
+
+@keyframes grow { from { width: 0; } to { width: 100%; } }
+.progress { animation: grow 7s linear forwards; }
+
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.float { animation: float 6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee, .pulse-ring, .fade-in, .float { animation: none; }
+  .draw { animation: none; stroke-dashoffset: 0; }
+}
